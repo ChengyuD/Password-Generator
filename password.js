@@ -1,26 +1,26 @@
-var password = "";
-
 var generatePassword = function() {
-    password = "";
+    var password = "";
 
     var charLength = passwordLength();
+    if (charLength < 8 || charLength > 128 || charLength === "") {
+        alert("Password length must be between 8 to 128 characters!");
+        return;
+    }
 
     var charSet = passwordSet();
-    var charSetLength = passwordSet.length;
+
+    var charSetLength = charSet.length;
+    console.log(charLength, charSet, charSetLength)
 
     for (var i = 0; i < charLength; i++) {
        password += charSet.charAt(Math.floor(Math.random()*charSetLength));
     }
+    console.log(password)
     return password;
 }
 
 var passwordLength = function() {
     var lengthChar = prompt("Enter the length of characters for your password?\nPassword length must be between 8 to 128 characters.");
-    
-    if (lengthChar < 8 || lengthChar > 128 || lengthChar === "") {
-        alert("Password length must be between 8 to 128 characters!");
-        return passwordLength;
-    }
 
     lengthChar = Math.floor(Number(lengthChar));
     return lengthChar;
@@ -58,10 +58,11 @@ var generateBtn = document.querySelector("#generate");
 
 function writePassword() {
     var password = generatePassword();
-    var passwordText = document.getElementById("#password");
+    console.log(password)
+    var passwordText = document.getElementById("password");
 
     passwordText.value = password;
 };
 
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
 
