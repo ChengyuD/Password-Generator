@@ -64,3 +64,4 @@ function writePassword() {
 };
 
 generateBtn.addEventListener("click", generatePassword);
+
